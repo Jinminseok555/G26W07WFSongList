@@ -55,8 +55,9 @@ namespace G26W07WFSongList {
         private void LoadSongs() {
             listSong.Items.Clear();
 
-            string keyword = txtFilter.Text.Trim();
-
+            string keyword = txtFilter.Text.Trim().ToLower();
+            // ToLower()를 사용하여 대소문자 구분 없이 검색 가능하게 함 (강제로 소문자 변환)
+            // songs도 ToLower()를 사용하여 대소문자 구분 없이 검색 가능하게 함 (강제로 소문자 변환)
             var songs = _db.Songs
                 .Where(s => s.Title.ToLower().Contains(keyword) ||
                     s.Artist.ToLower().Contains(keyword))
